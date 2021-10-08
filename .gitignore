@@ -1,0 +1,6 @@
+vendor
+.idea
+src
+specification
+config
+.env

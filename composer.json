@@ -1,0 +1,21 @@
+{
+  "name": "rustam/ewallet-client",
+  "authors": [
+    {
+      "name": "Rustam",
+      "email": "rustamergashev.sp@gmail.com"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.3",
+    "ext-soap": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ewallet\\": "app/Ewallet/"
+    }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.3"
+  }
+}
