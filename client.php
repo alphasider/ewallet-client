@@ -33,17 +33,17 @@
   ];
 
   $infoParams             = new GetInformationArguments();
-  $infoParams->password   = 'pwd';
-  $infoParams->username   = 'User';
+  $infoParams->password   = hash( 'sha256', '12345' );
+  $infoParams->username   = 'elon_musk';
   $infoParams->serviceId  = 3;
   $infoParams->parameters = [
-    new GenericParam( 'client_id', '634247' ),
-    new GenericParam( 'phone', '998991234567' ),
+    new GenericParam( 'client_id', '1' ),
+    new GenericParam( 'pin', '12345678' ),
   ];
 
   try {
-    //        print_r( $client->PerformTransaction( $param ) );
     dump( $client->GetInformation( $infoParams ) );
+    echo $client->__getLastResponse();
   } catch ( SoapFault $exception ) {
     dump( $exception );
   }
