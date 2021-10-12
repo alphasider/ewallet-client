@@ -20,18 +20,20 @@
   $client = new SoapClient( $_ENV[ 'WSDL_URL' ], $options );
   $client->__setLocation( 'http://ewallet-server/service.php' );
 
-  $param                  = new PerformTransactionArguments();
-  $param->amount          = 150000;
-  $param->password        = 'pwd';
-  $param->username        = 'user';
-  $param->serviceId       = 1;
-  $param->transactionId   = 437;
-  $param->transactionTime = ( new DateTime( 'now' ) )->format( DATE_ATOM );
-  $param->parameters      = [
-    new GenericParam( 'customer_id', '6324357' ),
-    new GenericParam( 'pin', '12345678' ),
+  $transaction                  = new PerformTransactionArguments();
+  $transaction->amount          = 150000;
+  $transaction->password        = hash( 'sha256', '12345' );
+  $transaction->username        = 'elon_musk';
+  $transaction->serviceId       = 1;
+  $transaction->transactionId   = 437;
+  $transaction->transactionTime = ( new DateTime( 'now' ) )->format( DATE_ATOM );
+  $transaction->parameters      = [
+    new GenericParam( 'customer_id', '2' ),
+    new GenericParam( 'wallet_number', '999877208249270' ),
   ];
 
+/*
+  To check GetInformation method
   $infoParams             = new GetInformationArguments();
   $infoParams->password   = hash( 'sha256', '12345' );
   $infoParams->username   = 'elon_musk';
@@ -39,11 +41,10 @@
   $infoParams->parameters = [
     new GenericParam( 'client_id', '1' ),
     new GenericParam( 'pin', '12345678' ),
-  ];
+  ];*/
 
   try {
-    dump( $client->GetInformation( $infoParams ) );
-    echo $client->__getLastResponse();
+    dump( $client->PerformTransaction( $transaction ) );
   } catch ( SoapFault $exception ) {
     dump( $exception );
   }
