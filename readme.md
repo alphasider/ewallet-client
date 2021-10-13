@@ -7,3 +7,6 @@
 Run the following code in the terminal in the root directory:
 
 	composer install
+
+### Note
+Don't forget to set environment variables in .env
